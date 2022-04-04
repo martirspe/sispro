@@ -1,0 +1,15 @@
+#Quitar las extensiones .PHP de los URL
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+
+#Agregar barra diagonal al final de las URL
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*[^/])$ /$1/ [L,R] <- for test, for prod use [L,R=301]
+
+# URL amigables
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^order-details/([0-9]+)$ order-details.php?id=$1
